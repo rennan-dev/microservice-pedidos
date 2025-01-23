@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\19886\\Documents\\Rennan\\semana14\\Estoque\\Estoque.csproj": {}
+    "C:\\Users\\19886\\Documents\\Rennan\\Git\\microservice-pedidos\\Estoque\\Estoque.csproj": {}
   },
   "projects": {
-    "C:\\Users\\19886\\Documents\\Rennan\\semana14\\Estoque\\Estoque.csproj": {
+    "C:\\Users\\19886\\Documents\\Rennan\\Git\\microservice-pedidos\\Estoque\\Estoque.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\19886\\Documents\\Rennan\\semana14\\Estoque\\Estoque.csproj",
+        "projectUniqueName": "C:\\Users\\19886\\Documents\\Rennan\\Git\\microservice-pedidos\\Estoque\\Estoque.csproj",
         "projectName": "Estoque",
-        "projectPath": "C:\\Users\\19886\\Documents\\Rennan\\semana14\\Estoque\\Estoque.csproj",
+        "projectPath": "C:\\Users\\19886\\Documents\\Rennan\\Git\\microservice-pedidos\\Estoque\\Estoque.csproj",
         "packagesPath": "C:\\Users\\19886\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\19886\\Documents\\Rennan\\semana14\\Estoque\\obj\\",
+        "outputPath": "C:\\Users\\19886\\Documents\\Rennan\\Git\\microservice-pedidos\\Estoque\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\19886\\AppData\\Roaming\\NuGet\\NuGet.Config"
