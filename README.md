@@ -5,12 +5,18 @@
 dotnet restore
 ```
 
+
 ```
 dotnet add package Microsoft.EntityFrameworkCore --version 8.0.11
+```
+```
 dotnet add package Microsoft.EntityFrameworkCore.Design --version 8.0.11
+```
+```
 dotnet add package Pomelo.EntityFrameworkCore.MySql --version 8.0.2
+```
+```
 dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
-
 ```
 
 ## Segundo passo: atualizar database
@@ -21,7 +27,6 @@ dotnet ef migrations add UpdateProdutoSchema
 ```
 dotnet ef database update  
 ```
-depois em Pedido
 terminal precisa estar em Estoque
 ```
 dotnet ef migrations add UpdatePedidoSchema 
