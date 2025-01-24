@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\19886\\Documents\\Rennan\\Git\\microservice-pedidos\\Pedido\\Pedido.csproj": {}
+    "C:\\Users\\19886\\Documents\\Rennan\\semana14\\Pedido\\Pedido.csproj": {}
   },
   "projects": {
-    "C:\\Users\\19886\\Documents\\Rennan\\Git\\microservice-pedidos\\Pedido\\Pedido.csproj": {
+    "C:\\Users\\19886\\Documents\\Rennan\\semana14\\Pedido\\Pedido.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\19886\\Documents\\Rennan\\Git\\microservice-pedidos\\Pedido\\Pedido.csproj",
+        "projectUniqueName": "C:\\Users\\19886\\Documents\\Rennan\\semana14\\Pedido\\Pedido.csproj",
         "projectName": "Pedido",
-        "projectPath": "C:\\Users\\19886\\Documents\\Rennan\\Git\\microservice-pedidos\\Pedido\\Pedido.csproj",
+        "projectPath": "C:\\Users\\19886\\Documents\\Rennan\\semana14\\Pedido\\Pedido.csproj",
         "packagesPath": "C:\\Users\\19886\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\19886\\Documents\\Rennan\\Git\\microservice-pedidos\\Pedido\\obj\\",
+        "outputPath": "C:\\Users\\19886\\Documents\\Rennan\\semana14\\Pedido\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\19886\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -7,7 +7,7 @@ namespace Pedido.Profiles;
 public class PedidoProfile : Profile {
     public PedidoProfile() {
         CreateMap<CreatePedidoDto, PedidoCliente>();
-        CreateMap<PedidoCliente, ReadPedidoDto>();
+        CreateMap<PedidoCliente, ReadPedidoDto>().ForMember(dest => dest.Itens, opt => opt.MapFrom(src => src.Itens));
         CreateMap<ReadPedidoDto, PedidoCliente>();
     }
 }
