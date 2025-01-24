@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Pedido.Data;
 using Pedido.Models;
 
@@ -18,7 +19,8 @@ public class PedidoRepository : IPedidoRepository {
     }
 
     public IEnumerable<PedidoCliente> GetAllPedido() {
-        return _context.Pedidos.ToList();
+        //return _context.Pedidos.ToList();
+        return _context.Pedidos.Include(p => p.Itens).ToList();
     }
 
     public PedidoCliente GetPedidoById(int id) => _context.Pedidos.FirstOrDefault(c => c.PedidoKey == id);

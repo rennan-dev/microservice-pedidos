@@ -41,6 +41,8 @@ public class PedidoController : ControllerBase {
 
         var readPedidoDto = _mapper.Map<ReadPedidoDto>(pedido);
 
+        //_estoqueHttpClient.EnviaPedidoParaEstoque(readPedidoDto);
+
         return await Task.FromResult(CreatedAtRoute(nameof(GetPedidoById), new { id = readPedidoDto.PedidoKey }, readPedidoDto));
     }
 }
