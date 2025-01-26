@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "AFPHEaxlVIA98xFB5Zu8Rh/4iSn22xEbK0pD8qPdEVM=",
+  "Hash": "4yf5e5kOofE/35WpaeRHQYo9bovfPY8y7+qDoydsgSc=",
   "Source": "Estoque",
   "BasePath": "_content/Estoque",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }
