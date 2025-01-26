@@ -5,8 +5,7 @@ using Pedido.Data.ItemPedidoRepository;
 using Pedido.Data.PedidoRepository;
 using Pedido.Data.ProdutoRepository;
 using Pedido.EstoqueHttpClient;
-//using Estoque.ItemServiceHttpClient;
-//using Estoque.RabbitMqClient;
+using Pedido.RabbitMqClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +24,7 @@ builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
 builder.Services.AddScoped<IItemPedidoRepository, ItemPedidoRepository>();  
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
-//builder.Services.AddSingleton<IRabbitMQ, RabbitMqClient>();
+builder.Services.AddSingleton<IRabbitMqClient, RabbitMqClient>();
 
 builder.Services.AddHttpClient<IEstoqueHttpClient, EstoqueHttpClient>();
 

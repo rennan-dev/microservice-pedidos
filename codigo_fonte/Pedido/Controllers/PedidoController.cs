@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Pedido.Data.PedidoRepository;
 using Pedido.Dtos.Pedidos;
 using Pedido.EstoqueHttpClient;
+using Pedido.RabbitMqClient;
 
 namespace Estoque.Controllers;
 
@@ -14,11 +15,13 @@ public class PedidoController : ControllerBase {
     private readonly IPedidoRepository _repository;
     private readonly IMapper _mapper;
     private readonly IEstoqueHttpClient _estoqueHttpClient;
+    private IRabbitMqClient _rabbitMqClient;
 
-    public PedidoController(IPedidoRepository repository, IMapper mapper, IEstoqueHttpClient estoqueHttpClient) {
+    public PedidoController(IPedidoRepository repository, IMapper mapper, IEstoqueHttpClient estoqueHttpClient, IRabbitMqClient rabbitMqClient) {
         _repository = repository;
         _mapper = mapper;
         _estoqueHttpClient = estoqueHttpClient;
+        _rabbitMqClient = rabbitMqClient;
     }
 
     [HttpGet]
@@ -70,6 +73,10 @@ public class PedidoController : ControllerBase {
         _repository.SaveChanges();
 
         var readPedidoDto = _mapper.Map<ReadPedidoDto>(pedido);
+
+        if(pedido.Status.Equals("Em análise")) {
+            _rabbitMqClient.EnviarPedidoParaEstoque(readPedidoDto);
+        }
 
         if(pedidoCancelado) {
             return BadRequest(new { mensagem = "Quantidade de pedido maior do que estoque", status = pedido.Status });
