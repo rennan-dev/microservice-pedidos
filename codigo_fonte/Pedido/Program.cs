@@ -3,6 +3,8 @@ using Microsoft.OpenApi.Models;
 using Pedido.Data;
 using Pedido.Data.ItemPedidoRepository;
 using Pedido.Data.PedidoRepository;
+using Pedido.Data.ProdutoRepository;
+using Pedido.EstoqueHttpClient;
 //using Estoque.ItemServiceHttpClient;
 //using Estoque.RabbitMqClient;
 
@@ -20,11 +22,12 @@ var connectionString = builder.Configuration.GetConnectionString("PedidoConnecti
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
-builder.Services.AddScoped<IItemPedidoRepository, ItemPedidoRepository>();
+builder.Services.AddScoped<IItemPedidoRepository, ItemPedidoRepository>();  
+builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
 //builder.Services.AddSingleton<IRabbitMQ, RabbitMqClient>();
 
-//builder.Services.AddHttpClient<IItemServiceHttpClient, ItemServiceHttpClient>();
+builder.Services.AddHttpClient<IEstoqueHttpClient, EstoqueHttpClient>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
