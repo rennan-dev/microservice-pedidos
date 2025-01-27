@@ -15,8 +15,8 @@ public class RabbitMqSubscriber : BackgroundService {
     public RabbitMqSubscriber(IConfiguration configuration, IProcessaEvento processaEvento) {
         _configuration = configuration;
         _connection = new ConnectionFactory() {
-            HostName = "localhost",
-            Port = 8002
+            HostName = _configuration["RabbitMqHost"],
+            Port = Int32.Parse(_configuration["RabbitMqPort"])
         }.CreateConnection();
         _channel = _connection.CreateModel();
         _channel.ExchangeDeclare(exchange: "trigger", type: ExchangeType.Fanout);
@@ -33,5 +33,10 @@ public class RabbitMqSubscriber : BackgroundService {
             var mensagem = Encoding.UTF8.GetString(body.ToArray());
             _processaEvento.Processa(mensagem);
         };
+
+        //mostrando que a tarefa foi consumida
+        _channel.BasicConsume(queue: _nomeDaFila, autoAck: true, consumer: consumidor);
+
+        return Task.CompletedTask;
     }
 }

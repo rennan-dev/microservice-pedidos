@@ -227,3 +227,4 @@ C:\Users\renna\OneDrive\Documentos\git\microservice-pedidos-1.1.1\codigo_fonte\P
 C:\Users\renna\OneDrive\Documentos\git\microservice-pedidos-1.1.1\codigo_fonte\Pedido\obj\Debug\net8.0\Pedido.pdb
 C:\Users\renna\OneDrive\Documentos\git\microservice-pedidos-1.1.1\codigo_fonte\Pedido\obj\Debug\net8.0\Pedido.genruntimeconfig.cache
 C:\Users\renna\OneDrive\Documentos\git\microservice-pedidos-1.1.1\codigo_fonte\Pedido\obj\Debug\net8.0\ref\Pedido.dll
+C:\Users\renna\OneDrive\Documentos\git\microservice-pedidos-1.1.1\codigo_fonte\Pedido\bin\Debug\net8.0\RabbitMQ.Client.dll

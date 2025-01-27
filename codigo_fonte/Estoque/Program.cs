@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Estoque.Data;
+using Estoque.RabbitMqClient;
+using Estoque.EventProcessor;
 //using Estoque.ItemServiceHttpClient;
 //using Estoque.RabbitMqClient;
 
@@ -19,7 +21,8 @@ builder.Services.AddDbContext<EstoqueContext>(opt => opt.UseMySql(connectionStri
 
 builder.Services.AddScoped<IEstoqueRepository, EstoqueRepository>();
 
-//builder.Services.AddSingleton<IRabbitMQ, RabbitMqClient>();
+builder.Services.AddHostedService<RabbitMqSubscriber>();
+builder.Services.AddSingleton<IProcessaEvento, ProcessaEvento>();
 
 //builder.Services.AddHttpClient<IItemServiceHttpClient, ItemServiceHttpClient>();
 

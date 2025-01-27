@@ -235,3 +235,4 @@ C:\Users\renna\OneDrive\Documentos\git\microservice-pedidos-1.1.1\codigo_fonte\E
 C:\Users\renna\OneDrive\Documentos\git\microservice-pedidos-1.1.1\codigo_fonte\Estoque\obj\Debug\net8.0\Estoque.pdb
 C:\Users\renna\OneDrive\Documentos\git\microservice-pedidos-1.1.1\codigo_fonte\Estoque\obj\Debug\net8.0\Estoque.genruntimeconfig.cache
 C:\Users\renna\OneDrive\Documentos\git\microservice-pedidos-1.1.1\codigo_fonte\Estoque\obj\Debug\net8.0\ref\Estoque.dll
+C:\Users\renna\OneDrive\Documentos\git\microservice-pedidos-1.1.1\codigo_fonte\Estoque\bin\Debug\net8.0\RabbitMQ.Client.dll
