@@ -37,11 +37,39 @@ public class PedidoController : ControllerBase {
     [HttpPost]
     public async Task<ActionResult<ReadPedidoDto>> CreatePedido(CreatePedidoDto createPedidoDto) {
         var pedido = _mapper.Map<PedidoCliente>(createPedidoDto);
+        
         _repository.CreatePedido(pedido);
         _repository.SaveChanges();
 
         var readPedidoDto = _mapper.Map<ReadPedidoDto>(pedido);
+        if(readPedidoDto.Itens != null) {
+            pedido.Itens = _mapper.Map<List<ItemPedido>>(readPedidoDto.Itens);
+        }
 
         return await Task.FromResult(CreatedAtRoute(nameof(GetPedidoById), new { id = readPedidoDto.PedidoKey }, readPedidoDto));
     }
+    
+    /*
+    [HttpPost]
+    public async Task<ActionResult<ReadPedidoDto>> CreatePedido(CreatePedidoDto createPedidoDto) {
+        // Mapeia o DTO para o modelo
+        var pedido = _mapper.Map<PedidoCliente>(createPedidoDto);
+        
+        // Associa os itens ao pedido
+        foreach (var item in pedido.Itens) {
+            item.PedidoCliente = pedido; // Relaciona o item ao pedido
+        }
+
+        // Salva o pedido no repositório
+        _repository.CreatePedido(pedido);
+        _repository.SaveChanges();
+
+        // Mapeia o modelo para o DTO de retorno
+        var readPedidoDto = _mapper.Map<ReadPedidoDto>(pedido);
+
+        // Retorna o resultado
+        return await Task.FromResult(CreatedAtRoute(nameof(GetPedidoById), new { id = readPedidoDto.PedidoKey }, readPedidoDto));
+    }
+    */
+    
 }

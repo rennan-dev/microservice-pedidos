@@ -16,6 +16,12 @@ docker run --name estoque -d -p 5222:8080 --network microsservice-bridge estoque
 docker run --name pedido -d -p 5047:8080 --network microsservice-bridge pedidoservice:1.1
 ```
 
+## Verificar database
+```
+docker exec -it mysql bash
+mysql -u root -p
+```
+
 ## Primeiro passo: atualizar os dois projetos
 ``` 
 dotnet restore

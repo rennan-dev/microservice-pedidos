@@ -6,7 +6,7 @@ namespace Estoque.Dtos.Pedido;
 
 public class ReadPedidoDto {
     public int PedidoKey { get; set; }
-    [JsonPropertyName("itens")]
+    [JsonPropertyName("Itens")]
     public List<ReadItemPedidoDto> Itens { get; set; } 
     public string Status { get; set; }
 }

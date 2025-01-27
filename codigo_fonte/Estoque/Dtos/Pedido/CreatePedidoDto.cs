@@ -5,5 +5,5 @@ using Estoque.Models;
 namespace Pedido.Dtos.Pedidos;
 
 public class CreatePedidoDto {
-    [Required] public List<CreateItemPedidoDto> Itens { get; set; } = new List<CreateItemPedidoDto>();
+    [Required] public List<CreateItemPedidoDto> Itens { get; set; }
 }
