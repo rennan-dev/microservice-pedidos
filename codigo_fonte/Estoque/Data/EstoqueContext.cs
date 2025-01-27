@@ -9,4 +9,8 @@ public class EstoqueContext : DbContext {
     }
 
     public DbSet<Produto> Produtos { get; set; }
+
+    //parte assíncrona
+    public DbSet<ItemPedido> ItensPedido { get; set; }
+    public DbSet<PedidoCliente> Pedidos { get; set; }
 }

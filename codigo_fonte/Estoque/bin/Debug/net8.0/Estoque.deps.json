@@ -14,6 +14,7 @@
           "Microsoft.EntityFrameworkCore": "8.0.11",
           "Microsoft.EntityFrameworkCore.Design": "8.0.11",
           "Pomelo.EntityFrameworkCore.MySql": "8.0.2",
+          "RabbitMQ.Client": "6.2.3",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
         "runtime": {
@@ -518,6 +519,18 @@
           }
         }
       },
+      "RabbitMQ.Client/6.2.3": {
+        "dependencies": {
+          "System.Memory": "4.5.4",
+          "System.Threading.Channels": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/RabbitMQ.Client.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.2.3.0"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.4.0": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -630,6 +643,7 @@
         }
       },
       "System.IO.Pipelines/6.0.3": {},
+      "System.Memory/4.5.4": {},
       "System.Reflection.Metadata/6.0.1": {
         "dependencies": {
           "System.Collections.Immutable": "6.0.0"
@@ -895,6 +909,13 @@
       "path": "pomelo.entityframeworkcore.mysql/8.0.2",
       "hashPath": "pomelo.entityframeworkcore.mysql.8.0.2.nupkg.sha512"
     },
+    "RabbitMQ.Client/6.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qogCFK03qrNAKV3b9bfWsyT7bUIjkaTeg8sw+mqV8lTP6qc9VDu9MepW4LNUbQ0L/PTczf2f3CWzE+KIYYqBLA==",
+      "path": "rabbitmq.client/6.2.3",
+      "hashPath": "rabbitmq.client.6.2.3.nupkg.sha512"
+    },
     "Swashbuckle.AspNetCore/6.4.0": {
       "type": "package",
       "serviceable": true,
@@ -985,6 +1006,13 @@
       "sha512": "sha512-ryTgF+iFkpGZY1vRQhfCzX0xTdlV3pyaTTqRu2ETbEv+HlV7O6y7hyQURnghNIXvctl5DuZ//Dpks6HdL/Txgw==",
       "path": "system.io.pipelines/6.0.3",
       "hashPath": "system.io.pipelines.6.0.3.nupkg.sha512"
+    },
+    "System.Memory/4.5.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
+      "path": "system.memory/4.5.4",
+      "hashPath": "system.memory.4.5.4.nupkg.sha512"
     },
     "System.Reflection.Metadata/6.0.1": {
       "type": "package",

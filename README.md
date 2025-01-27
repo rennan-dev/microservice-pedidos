@@ -1,5 +1,16 @@
 # Microservice Pedidos
 
+## Usando docker:
+```
+docker pull mcr.microsoft.com/dotnet/sdk:8.0
+
+docker build -t estoqueservice:1.1 .
+docker build -t pedidoservice:1.1 .
+
+docker run --name estoque -d -p 5222:8080 --network microsservice-bridge estoqueservice:1.2
+docker run --name pedido -d -p 5047:8080 --network microsservice-bridge pedidoservice:1.3
+```
+
 ## Primeiro passo: atualizar os dois projetos
 ``` 
 dotnet restore
