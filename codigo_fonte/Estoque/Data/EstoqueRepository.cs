@@ -1,4 +1,5 @@
 using Estoque.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Estoque.Data;
 
@@ -34,7 +35,8 @@ public class EstoqueRepository : IEstoqueRepository {
     public ItemPedido GetItemPedidoById(int id) => _context.ItensPedido.FirstOrDefault(c => c.ItemPedidoKey == id);
 
     public IEnumerable<PedidoCliente> GetAllPedidos() {
-        return _context.Pedidos.ToList();
+        //return _context.Pedidos.ToList();
+        return _context.Pedidos.Include(p => p.Itens).ToList();
     }
 
     public PedidoCliente GetPedidoById(int id) => _context.Pedidos.FirstOrDefault(c => c.PedidoKey == id);

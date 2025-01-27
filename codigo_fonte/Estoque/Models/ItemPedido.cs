@@ -6,4 +6,7 @@ public class ItemPedido {
     [Key][Required] public int ItemPedidoKey { get; set; }
     [Required] public int ProductId { get; set; }
     [Required] public int Quantidade { get; set; }
+
+    public int PedidoClientePedidoKey { get; set; }
+    public PedidoCliente PedidoCliente { get; set; }
 }

@@ -14,7 +14,8 @@ public class EstoqueProfile : Profile {
 
         //parte assíncrona - ItemPedido e Pedido
         CreateMap<ItemPedido, ReadItemPedidoDto>();
-        CreateMap<PedidoCliente, ReadPedidoDto>();
+        CreateMap<PedidoCliente, ReadPedidoDto>().ForMember(dest => dest.Itens, opt => opt.MapFrom(src => src.Itens));
+
         CreateMap<CreatePedidoDto, PedidoCliente>();
         CreateMap<CreateItemPedidoDto, ItemPedido>();
         CreateMap<ReadItemPedidoDto, ItemPedido>();
