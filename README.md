@@ -7,8 +7,19 @@ docker pull mcr.microsoft.com/dotnet/sdk:8.0
 docker build -t estoqueservice:1.1 .
 docker build -t pedidoservice:1.1 .
 
+docker network create microsservice-bridge
+
+docker run --name rabbitmq-service -d -p 15672:15672 -p 5672:5672 --network microsservice-bridge rabbitmq:3-management
+docker run --name=mysql -e MYSQL_ROOT_PASSWORD=root -d --network microsservice-bridge mysql:5.6
+
 docker run --name estoque -d -p 5222:8080 --network microsservice-bridge estoqueservice:1.1
 docker run --name pedido -d -p 5047:8080 --network microsservice-bridge pedidoservice:1.1
+```
+
+## Verificar database
+```
+docker exec -it mysql bash
+mysql -u root -p
 ```
 
 ## Primeiro passo: atualizar os dois projetos

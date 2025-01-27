@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\renna\\OneDrive\\Documentos\\git\\microservice-pedidos-1.1.1\\codigo_fonte\\Estoque\\Estoque.csproj": {}
+    "C:\\Users\\19886\\Documents\\Bemol\\Semana 14\\entregar\\microservice-pedidos\\codigo_fonte\\Estoque\\Estoque.csproj": {}
   },
   "projects": {
-    "C:\\Users\\renna\\OneDrive\\Documentos\\git\\microservice-pedidos-1.1.1\\codigo_fonte\\Estoque\\Estoque.csproj": {
+    "C:\\Users\\19886\\Documents\\Bemol\\Semana 14\\entregar\\microservice-pedidos\\codigo_fonte\\Estoque\\Estoque.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\renna\\OneDrive\\Documentos\\git\\microservice-pedidos-1.1.1\\codigo_fonte\\Estoque\\Estoque.csproj",
+        "projectUniqueName": "C:\\Users\\19886\\Documents\\Bemol\\Semana 14\\entregar\\microservice-pedidos\\codigo_fonte\\Estoque\\Estoque.csproj",
         "projectName": "Estoque",
-        "projectPath": "C:\\Users\\renna\\OneDrive\\Documentos\\git\\microservice-pedidos-1.1.1\\codigo_fonte\\Estoque\\Estoque.csproj",
-        "packagesPath": "C:\\Users\\renna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\renna\\OneDrive\\Documentos\\git\\microservice-pedidos-1.1.1\\codigo_fonte\\Estoque\\obj\\",
+        "projectPath": "C:\\Users\\19886\\Documents\\Bemol\\Semana 14\\entregar\\microservice-pedidos\\codigo_fonte\\Estoque\\Estoque.csproj",
+        "packagesPath": "C:\\Users\\19886\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\19886\\Documents\\Bemol\\Semana 14\\entregar\\microservice-pedidos\\codigo_fonte\\Estoque\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\renna\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\19886\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,8 +37,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -104,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
