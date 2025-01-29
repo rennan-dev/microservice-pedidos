@@ -14,12 +14,10 @@ public class EstoqueHttpClient : IEstoqueHttpClient {
         _configuration = configuration;
     }
     public async Task<ReadProdutoDto> GetProdutoPorId(int productId) {
-        // Construa a URL com o ID do produto
         var url = $"{_configuration["EstoqueService"]}/{productId}";
 
-        Console.WriteLine($"Requisição para: {url}"); // Log para depuração
+        Console.WriteLine($"Requisição para: {url}"); //log para depuração
 
-        // Envie a requisição GET
         var response = await _client.GetAsync(url);
 
         if (response.IsSuccessStatusCode) {

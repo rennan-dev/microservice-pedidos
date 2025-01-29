@@ -31,7 +31,7 @@ public class RabbitMqSubscriber : BackgroundService {
         consumidor.Received += (ModuleHandle, ea) => {
             var body = ea.Body;
             var mensagem = Encoding.UTF8.GetString(body.ToArray());
-            _processaEvento.Processa(mensagem);
+            _processaEvento.ProcessaAsync(mensagem);
         };
 
         //mostrando que a tarefa foi consumida
