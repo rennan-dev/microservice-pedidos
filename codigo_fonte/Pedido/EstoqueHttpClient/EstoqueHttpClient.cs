@@ -20,12 +20,33 @@ public class EstoqueHttpClient : IEstoqueHttpClient {
 
         var response = await _client.GetAsync(url);
 
-        if (response.IsSuccessStatusCode) {
+        if(response.IsSuccessStatusCode) {
             var content = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<ReadProdutoDto>(content);
         }
 
         Console.WriteLine($"Erro ao buscar produto. Status Code: {response.StatusCode}");
         return null;
+    }
+
+    public async Task<IEnumerable<ReadProdutoDto>> GetAllProdutos() {  
+        var url = $"{_configuration["EstoqueService"]}";  
+
+        Console.WriteLine($"Requisição para: {url}"); //log para depuração
+
+        var response = await _client.GetAsync(url);
+
+        if (response.IsSuccessStatusCode) {
+            var content = await response.Content.ReadAsStringAsync();
+            //verifica se o conteúdo da resposta pode ser deserializado corretamente
+            try {
+                return JsonSerializer.Deserialize<IEnumerable<ReadProdutoDto>>(content);
+            } catch (JsonException ex) {
+                Console.WriteLine($"Erro ao deserializar a resposta: {ex.Message}");
+            }
+        }
+
+        Console.WriteLine($"Erro ao buscar produtos. Status Code: {response.StatusCode}");
+        return Enumerable.Empty<ReadProdutoDto>();
     }
 }

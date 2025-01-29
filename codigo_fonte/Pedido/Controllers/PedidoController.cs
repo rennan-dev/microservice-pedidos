@@ -86,6 +86,7 @@ public class PedidoController : ControllerBase {
     }
 
     [HttpPut("{id}")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public IActionResult UpdatePedido(int id, [FromBody] UpdatePedidoDto updatePedidoDto) {
         var pedidoExiste = _repository.GetPedidoById(id);
         
