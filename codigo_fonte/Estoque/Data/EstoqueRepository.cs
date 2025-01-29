@@ -1,3 +1,5 @@
+using Estoque.Dtos;
+using Estoque.Dtos.Pedido;
 using Estoque.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +21,28 @@ public class EstoqueRepository : IEstoqueRepository {
             throw new ArgumentNullException(nameof(produto));
         }
         _context.Produtos.Add(produto);
+    }
+
+    public void UpdateProduto(int id, UpdateProdutoDto updateProdutoDto) {
+        var produtoExiste = _context.Produtos.FirstOrDefault(produto=>produto.ProductId == id);
+
+        if(produtoExiste==null) {
+            throw new KeyNotFoundException($"Produto com ID {id} não encontrado.");
+        }
+
+        produtoExiste.QuantidadeDisponivel = updateProdutoDto.QuantidadeDisponivel;
+        _context.Produtos.Update(produtoExiste);
+    }
+
+    public void UpdatePedido(int id, UpdatePedidoDto updatePedidoDto) {
+        var pedidoExiste = _context.Pedidos.FirstOrDefault(pedido=>pedido.PedidoKey == id);
+
+        if(pedidoExiste==null) {
+            throw new KeyNotFoundException($"Pedido com ID {id} não encontrado.");
+        }
+
+        pedidoExiste.Status = updatePedidoDto.Status;
+        _context.Pedidos.Update(pedidoExiste);
     }
 
     public IEnumerable<Produto> GetAllProduto() {
@@ -47,18 +71,4 @@ public class EstoqueRepository : IEstoqueRepository {
         }
         _context.Pedidos.Add(pedido);
     }
-    
-    /*
-    public void CreatePedido(PedidoCliente pedido) {
-        if (pedido == null) {
-            throw new ArgumentNullException(nameof(pedido));
-        }
-
-        // Adiciona o pedido e seus itens
-        _context.Pedidos.Add(pedido);
-        foreach(var item in pedido.Itens) {
-            _context.ItensPedido.Add(item); // Garante que os itens sejam adicionados
-        }
-    }
-    */
 }

@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace Estoque.Dtos.Pedido;
@@ -6,8 +5,8 @@ namespace Estoque.Dtos.Pedido;
 public class ReadItemPedidoDto {
     [JsonPropertyName("itemPedidoKey")]
     public int ItemPedidoKey { get; set; }
-    [JsonPropertyName("productId")]
+    [JsonPropertyName("ProductId")]
     public int ProductId { get; set; }
-    [JsonPropertyName("quantidade")]
+    [JsonPropertyName("Quantidade")]
     public int Quantidade { get; set; }
 }

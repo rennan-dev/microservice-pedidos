@@ -1,3 +1,5 @@
+using Estoque.Dtos;
+using Estoque.Dtos.Pedido;
 using Estoque.Models;
 
 namespace Estoque.Data;
@@ -7,6 +9,8 @@ public interface IEstoqueRepository {
     IEnumerable<Produto> GetAllProduto();
     Produto GetProdutoById(int id);
     void CreateProduto(Produto produto);
+    void UpdateProduto(int id, UpdateProdutoDto updateProdutoDto);
+    void UpdatePedido(int id, UpdatePedidoDto updatePedidoDto);
 
 
 

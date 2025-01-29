@@ -1,69 +1,53 @@
 # Microservice Pedidos
 
-## Usando docker:
+## Passos no docker:
+
+### Baixando dotnet
 ```
 docker pull mcr.microsoft.com/dotnet/sdk:8.0
+```
 
+### Executar dentro da raiz do projeto em Estoque
+```
 docker build -t estoqueservice:1.1 .
+```
+
+### Executar dentro da raiz do projeto em Pedido
+```
 docker build -t pedidoservice:1.1 .
+```
 
+### Criando bridge para todos os contêineres ficarem agrupados
+```
 docker network create microsservice-bridge
+```
 
+### Executando o mensageiro RabbitMQ
+
+```
 docker run --name rabbitmq-service -d -p 15672:15672 -p 5672:5672 --network microsservice-bridge rabbitmq:3-management
-docker run --name=mysql -e MYSQL_ROOT_PASSWORD=root -d --network microsservice-bridge mysql:5.6
+```
 
+### Executando o bando de dados 
+```
+docker run --name=mysql -e MYSQL_ROOT_PASSWORD=root -d --network microsservice-bridge mysql:5.6
+```
+
+### Executando os serviços 'Estoque' e 'Pedido'
+```
 docker run --name estoque -d -p 5222:8080 --network microsservice-bridge estoqueservice:1.1
+```
+```
 docker run --name pedido -d -p 5047:8080 --network microsservice-bridge pedidoservice:1.1
 ```
 
-## Verificar database
+## Verificar database(opcional)
 ```
 docker exec -it mysql bash
 mysql -u root -p
 ```
 
-## Primeiro passo: atualizar os dois projetos
-``` 
-dotnet restore
-```
-
-
-```
-dotnet add package Microsoft.EntityFrameworkCore --version 8.0.11
-```
-```
-dotnet add package Microsoft.EntityFrameworkCore.Design --version 8.0.11
-```
-```
-dotnet add package Pomelo.EntityFrameworkCore.MySql --version 8.0.2
-```
-```
-dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
-```
-
-## Segundo passo: atualizar database
-terminal precisa estar em Estoque
-```
-dotnet ef migrations add UpdateProdutoSchema 
-```
-```
-dotnet ef database update  
-```
-terminal precisa estar em Estoque
-```
-dotnet ef migrations add UpdatePedidoSchema 
-```
-```
-dotnet ef database update  
-```
-
-
-## Terceiro passo: inicializar projetos
-```
-dotnet run
-```
-
-## Quarto passo: acessar links no navegador
+## Acessar links no navegador
 Estoque
 ```
 http://localhost:5222/swagger/index.html
