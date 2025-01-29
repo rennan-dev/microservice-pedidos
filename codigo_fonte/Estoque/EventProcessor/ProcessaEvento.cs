@@ -1,6 +1,7 @@
 using System.Text.Json;
 using AutoMapper;
 using Estoque.Data;
+using Estoque.Dtos;
 using Estoque.Dtos.Pedido;
 using Estoque.Models;
 
@@ -16,47 +17,68 @@ public class ProcessaEvento : IProcessaEvento {
         _scopeFactory = scopeFactory;
     }
 
-    /*
     public void Processa(string mensagem) {
         using var scope = _scopeFactory.CreateScope();
-        Console.WriteLine("Mensagem recebida: " + mensagem);
-        var estoqueRepository = scope.ServiceProvider.GetRequiredService<IEstoqueRepository>();
-        var readPedidoDto = JsonSerializer.Deserialize<ReadPedidoDto>(mensagem);
-        if(readPedidoDto.Itens != null && readPedidoDto.Itens.Any()) {
-            Console.WriteLine("Itens recebidos: " + readPedidoDto.Itens.Count());
-        } else {
-            Console.WriteLine("Nenhum item encontrado na mensagem");
-        }
-
-        var pedido = _mapper.Map<PedidoCliente>(readPedidoDto);
-
-        Ainda estou sem o método ExistePedidoExterno nesse repository
-        //if(!estoqueRepository.ExistePedidoExterno(pedido.PedidoKey)) {
-            estoqueRepository.CreatePedido(pedido);
-            estoqueRepository.SaveChanges();
-        //}
-    }*/
-    public void Processa(string mensagem) {
-        using var scope = _scopeFactory.CreateScope();
-
         var estoqueRepository = scope.ServiceProvider.GetRequiredService<IEstoqueRepository>();
         var readPedidoDto = JsonSerializer.Deserialize<ReadPedidoDto>(mensagem);
 
-        // Log da mensagem recebida para depuração
         Console.WriteLine("Mensagem recebida: " + mensagem);
 
-        if (readPedidoDto.Itens != null && readPedidoDto.Itens.Any()) {
-            Console.WriteLine("Itens recebidos: " + readPedidoDto.Itens.Count());
-        } else {
+        if(readPedidoDto.Itens == null || !readPedidoDto.Itens.Any()) {
             Console.WriteLine("Nenhum item encontrado na mensagem");
+            return;
         }
+
+        Console.WriteLine("Itens recebidos: " + readPedidoDto.Itens.Count());
 
         var pedido = _mapper.Map<PedidoCliente>(readPedidoDto);
 
-        // Verifique se os itens foram corretamente mapeados para o pedido
-        Console.WriteLine("Itens no pedido mapeado: " + pedido.Itens.Count);
-
+        //salva o pedido antes de qualquer alteração no estoque
         estoqueRepository.CreatePedido(pedido);
         estoqueRepository.SaveChanges();
+
+        try {
+            //cria uma lista auxiliar para armazenar as atualizações de estoque pendentes
+            var atualizacoesEstoque = new List<(int ProdutoId, int NovaQuantidade)>();
+
+            //verificar se há estoque suficiente para todos os itens
+            foreach(var item in readPedidoDto.Itens) {
+                var produto = estoqueRepository.GetProdutoById(item.ProductId);
+
+                if(produto == null) {
+                    throw new KeyNotFoundException($"Produto com ID {item.ProductId} não encontrado.");
+                }
+
+                if(produto.QuantidadeDisponivel < item.Quantidade) {
+                    throw new InvalidOperationException($"Estoque insuficiente para o produto ID {item.ProductId}. Disponível: {produto.QuantidadeDisponivel}, Solicitado: {item.Quantidade}");
+                }
+
+                //adiciona a atualização à lista auxiliar(sem aplicar imediatamente)
+                atualizacoesEstoque.Add((produto.ProductId, produto.QuantidadeDisponivel - item.Quantidade));
+            }
+
+            //se chegou até aqui, significa que todos os produtos têm estoque suficiente
+            foreach(var (produtoId, novaQuantidade) in atualizacoesEstoque) {
+                var updateDto = new UpdateProdutoDto { QuantidadeDisponivel = novaQuantidade };
+                estoqueRepository.UpdateProduto(produtoId, updateDto);
+            }
+
+            var updatePedidoDto = new UpdatePedidoDto { Status = "Confirmado" };
+            estoqueRepository.UpdatePedido(pedido.PedidoKey, updatePedidoDto);
+
+            //salva todas as alterações
+            estoqueRepository.SaveChanges();
+            Console.WriteLine($"Pedido {pedido.PedidoKey} confirmado com sucesso.");
+        
+        }catch (Exception ex) {
+            Console.WriteLine($"Erro ao processar pedido {pedido.PedidoKey}: {ex.Message}");
+
+            //atualiza o status do pedido para "Cancelado"(sem alterar o estoque)
+            var updatePedidoDto = new UpdatePedidoDto { Status = "Cancelado" };
+            estoqueRepository.UpdatePedido(pedido.PedidoKey, updatePedidoDto);
+
+            //salva a alteração de status
+            estoqueRepository.SaveChanges();
+        }
     }
 }
