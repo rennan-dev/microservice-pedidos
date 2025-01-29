@@ -23,12 +23,16 @@ public class ProdutoController : ControllerBase {
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<ReadProdutoDto>> GetProdutos()
-    {
-        var produtos = _repository.GetAllProduto();
+    public async Task<ActionResult<IEnumerable<ReadProdutoDto>>> GetProdutos() {
+        var produtos = await _estoqueHttpClient.GetAllProdutos();  
+        if(produtos == null || !produtos.Any()) {
+            return NotFound("Nenhum produto encontrado.");
+        }
 
-        return Ok(_mapper.Map<IEnumerable<ReadProdutoDto>>(produtos));
+        var produtosDto = _mapper.Map<IEnumerable<ReadProdutoDto>>(produtos);  
+        return Ok(produtosDto); 
     }
+
 
     [HttpGet("{productId}")]
     public async Task<ActionResult> VerificaProduto(int productId) {
