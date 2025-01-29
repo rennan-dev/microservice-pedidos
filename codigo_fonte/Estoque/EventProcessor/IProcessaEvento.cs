@@ -1,5 +1,5 @@
 namespace Estoque.EventProcessor;
 
 public interface IProcessaEvento {
-    public void Processa(string mensagem);
+    public Task ProcessaAsync(string mensagem);
 }

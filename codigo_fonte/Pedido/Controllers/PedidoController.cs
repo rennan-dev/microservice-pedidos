@@ -84,4 +84,18 @@ public class PedidoController : ControllerBase {
 
         return CreatedAtRoute(nameof(GetPedidoById), new { id = readPedidoDto.PedidoKey }, readPedidoDto);
     }
+
+    [HttpPut("{id}")]
+    public IActionResult UpdatePedido(int id, [FromBody] UpdatePedidoDto updatePedidoDto) {
+        var pedidoExiste = _repository.GetPedidoById(id);
+        
+        if(pedidoExiste==null) {
+            return NotFound();
+        }
+
+        pedidoExiste.Status = updatePedidoDto.Status;
+        _repository.SaveChanges();
+
+        return NoContent();
+    }
 }

@@ -40,10 +40,4 @@ public class ProdutoController : ControllerBase {
         Console.WriteLine($"Produto encontrado: {JsonSerializer.Serialize(produto)}");
         return Ok(produto);
     }
-
-    [HttpPost]
-    public ActionResult RecebeProdutoDoEstoque(ReadProdutoDto readProdutoDto) {
-        Console.WriteLine(readProdutoDto.ProductId);
-        return Ok();
-    }
 }

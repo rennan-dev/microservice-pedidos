@@ -33,6 +33,7 @@ public class ItemPedidoController : ControllerBase {
         return NotFound();
     }
 
+    /*
     [HttpPost]
     public async Task<ActionResult<ReadItemPedidoDto>> CreateItemPedido(CreateItemPedidoDto createItemPedidoDto) {
         var itemPedido = _mapper.Map<ItemPedido>(createItemPedidoDto);
@@ -43,4 +44,5 @@ public class ItemPedidoController : ControllerBase {
 
         return await Task.FromResult(CreatedAtRoute(nameof(GetItemPedidoById), new { id = readItemPedidoDto.ItemPedidoKey }, readItemPedidoDto));
     }
+    */
 }

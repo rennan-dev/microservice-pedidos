@@ -1,9 +1,11 @@
+using System.Text;
 using System.Text.Json;
 using AutoMapper;
 using Estoque.Data;
 using Estoque.Dtos;
 using Estoque.Dtos.Pedido;
 using Estoque.Models;
+using Estoque.PedidoHttpClient;
 
 namespace Estoque.EventProcessor;
 
@@ -11,13 +13,16 @@ public class ProcessaEvento : IProcessaEvento {
 
     private readonly IMapper _mapper;
     private readonly IServiceScopeFactory _scopeFactory;
+    private readonly IPedidoHttpClient _pedidoHttpClient;
 
-    public ProcessaEvento(IMapper mapper, IServiceScopeFactory scopeFactory) {
+
+    public ProcessaEvento(IMapper mapper, IServiceScopeFactory scopeFactory, IPedidoHttpClient pedidoHttpClient) {
         _mapper = mapper;
         _scopeFactory = scopeFactory;
+        _pedidoHttpClient = pedidoHttpClient;
     }
 
-    public void Processa(string mensagem) {
+    public async Task ProcessaAsync(string mensagem) {
         using var scope = _scopeFactory.CreateScope();
         var estoqueRepository = scope.ServiceProvider.GetRequiredService<IEstoqueRepository>();
         var readPedidoDto = JsonSerializer.Deserialize<ReadPedidoDto>(mensagem);
@@ -69,6 +74,9 @@ public class ProcessaEvento : IProcessaEvento {
             //salva todas as alterações
             estoqueRepository.SaveChanges();
             Console.WriteLine($"Pedido {pedido.PedidoKey} confirmado com sucesso.");
+
+            await _pedidoHttpClient.UpdatePedido(pedido.PedidoKey, new UpdatePedidoDto { Status = "Confirmado" });
+
         
         }catch (Exception ex) {
             Console.WriteLine($"Erro ao processar pedido {pedido.PedidoKey}: {ex.Message}");
@@ -79,6 +87,8 @@ public class ProcessaEvento : IProcessaEvento {
 
             //salva a alteração de status
             estoqueRepository.SaveChanges();
+
+            await _pedidoHttpClient.UpdatePedido(pedido.PedidoKey, new UpdatePedidoDto { Status = "Cancelado" });
         }
     }
 }
