@@ -15,6 +15,10 @@ docker-compose up -d
 ```
 Para verificar se todos os quatro serviços estão em execução, utilize o comando abaixo. Caso algum ainda não tenha iniciado, aguarde um pouco mais e execute novamente:
 ```
+docker ps
+```
+Para verificar se eles executaram mas pararam por motivos de erros, utilize o comando abaixo.
+```
 docker ps -a
 ```
 Para cancelar a execução:
