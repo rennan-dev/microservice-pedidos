@@ -1,15 +1,19 @@
 # Microservice Pedidos
 
-Para rodar esses serviços é necessário ter o docker instalado em seu computador e que o mesmo esteja executando enquanto roda os comandos abaixo. Eu disponibilizei duas formas de rodar o programa, sendo a primeira a mais simples utilizando o docker-compose para rodar todos os serviços com um único comando, porém fique a sua preferência.
+Para rodar esses serviços, é necessário ter o Docker instalado em seu computador e garantir que ele esteja em execução enquanto você roda os comandos abaixo.
+
+Eu disponibilizei duas formas de rodar o programa, sendo a primeira a mais simples, utilizando o Docker Compose para executar todos os serviços com um único comando. No entanto, a escolha fica a seu critério.
 
 ## Passos no docker-compose
 
-No terminal esteja no diretório onde tem o docker-compose.yml desse projeto, em seguida utilize esse comando e aguarde até que os serviços Estoque e Pedido executem, pois eles são dependentes do mysql e rabbitmq.
+No terminal, navegue até o diretório onde está localizado o arquivo docker-compose.yml deste projeto.
+
+Em seguida, utilize o seguinte comando e aguarde até que os serviços Estoque e Pedido iniciem, pois eles são dependentes do **MySQL** e do **RabbitMQ**:
 
 ```
 docker-compose up -d
 ```
-Para visualizar se todos os quatro serviços estão executando, se não espere um pouco mais e execute este mesmo comando novamente:
+Para verificar se todos os quatro serviços estão em execução, utilize o comando abaixo. Caso algum ainda não tenha iniciado, aguarde um pouco mais e execute novamente:
 ```
 docker ps -a
 ```
