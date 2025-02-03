@@ -13,6 +13,15 @@ Em seguida, utilize o seguinte comando e aguarde até que os serviços Estoque e
 ```
 docker-compose up -d
 ```
+## Para a visualização, cole os seguintes links no seu navegador
+Estoque
+```
+http://localhost:5222/swagger/index.html
+```
+Pedido
+```
+http://localhost:5047/swagger/index.html
+```
 Para verificar se todos os quatro serviços estão em execução, utilize o comando abaixo. Caso algum ainda não tenha iniciado, aguarde um pouco mais e execute novamente:
 ```
 docker ps
