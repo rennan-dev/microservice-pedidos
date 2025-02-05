@@ -2924,11 +2924,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\19886\\Documents\\Bemol\\Semana 14\\entregar\\microservice-pedidos\\codigo_fonte\\Estoque\\Estoque.csproj",
+      "projectUniqueName": "C:\\Users\\19886\\Documents\\Rennan\\Git\\microservice-pedidos\\codigo_fonte\\Estoque\\Estoque.csproj",
       "projectName": "Estoque",
-      "projectPath": "C:\\Users\\19886\\Documents\\Bemol\\Semana 14\\entregar\\microservice-pedidos\\codigo_fonte\\Estoque\\Estoque.csproj",
+      "projectPath": "C:\\Users\\19886\\Documents\\Rennan\\Git\\microservice-pedidos\\codigo_fonte\\Estoque\\Estoque.csproj",
       "packagesPath": "C:\\Users\\19886\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\19886\\Documents\\Bemol\\Semana 14\\entregar\\microservice-pedidos\\codigo_fonte\\Estoque\\obj\\",
+      "outputPath": "C:\\Users\\19886\\Documents\\Rennan\\Git\\microservice-pedidos\\codigo_fonte\\Estoque\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\19886\\AppData\\Roaming\\NuGet\\NuGet.Config"

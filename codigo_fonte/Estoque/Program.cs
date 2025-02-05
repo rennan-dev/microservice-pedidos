@@ -4,6 +4,7 @@ using Estoque.Data;
 using Estoque.RabbitMqClient;
 using Estoque.EventProcessor;
 using Estoque.PedidoHttpClient;
+using System.Reflection;
 //using Estoque.ItemServiceHttpClient;
 //using Estoque.RabbitMqClient;
 
@@ -14,7 +15,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c => {
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Estoque", Version = "v1" });
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+});
 
 var connectionString = builder.Configuration.GetConnectionString("EstoqueConnection");
 
@@ -30,11 +36,6 @@ builder.Services.AddSingleton<IProcessaEvento, ProcessaEvento>();
 //builder.Services.AddHttpClient<IItemServiceHttpClient, ItemServiceHttpClient>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Estoque", Version = "v1" });
-});
 
 
 var app = builder.Build();

@@ -33,7 +33,18 @@ public class ProdutoController : ControllerBase {
         return NotFound();
     }
 
+    /// <summary>
+    /// Adiciona um produto ao banco de dados.
+    /// </summary>
+    /// <param name="createProdutoDto">Objeto contendo os campos necessários para a criação de um produto.</param>
+    /// <returns>Retorna o produto criado.</returns>
+    /// <response code="201">Produto criado com sucesso.</response>
+    /// <response code="400">Erro na requisição. Verifique os dados enviados.</response>
+    /// <response code="500">Erro interno do servidor.</response>
     [HttpPost]
+    [ProducesResponseType(typeof(ReadProdutoDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<ReadProdutoDto>> CreateProduto(CreateProdutoDto createProdutoDto) {
         var produto = _mapper.Map<Produto>(createProdutoDto);
         _repository.CreateProduto(produto);
