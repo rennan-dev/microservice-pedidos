@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "y9Z4YLV6VK4=",
+  "dgSpecHash": "BFOLSHmLxR8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\19886\\Documents\\Bemol\\Semana 14\\entregar\\microservice-pedidos\\codigo_fonte\\Pedido\\Pedido.csproj",
+  "projectFilePath": "C:\\Users\\19886\\Documents\\Rennan\\Git\\microservice-pedidos\\codigo_fonte\\Pedido\\Pedido.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\19886\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\19886\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

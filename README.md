@@ -11,7 +11,7 @@ No terminal, navegue até o diretório onde está localizado o arquivo docker-co
 Em seguida, utilize o seguinte comando e aguarde até que os serviços Estoque e Pedido iniciem, pois eles são dependentes do **MySQL** e do **RabbitMQ**:
 
 ```
-docker-compose up -d
+docker-compose up
 ```
 ## Para a visualização, cole os seguintes links no seu navegador
 Estoque
