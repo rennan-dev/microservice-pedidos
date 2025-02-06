@@ -24,13 +24,34 @@ public class PedidoController : ControllerBase {
         _rabbitMqClient = rabbitMqClient;
     }
 
+    /// <summary>
+    /// Busca todos os Pedido armazenados no database.
+    /// </summary>
+    /// <returns>Retorna todos os Pedidos</returns>
+    /// <response code="200">Pedidos localizados com sucesso.</response>
+    /// <response code="400">Erro na requisição. Verifique os dados enviados.</response>
+    /// <response code="500">Erro interno do servidor.</response>
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public ActionResult<IEnumerable<ReadPedidoDto>> GetAllPedido() {
         var pedidos = _repository.GetAllPedido();
         return Ok(_mapper.Map<IEnumerable<ReadPedidoDto>>(pedidos));
     }
 
+    /// <summary>
+    /// Busca um Pedido do através do ID.
+    /// </summary>
+    /// <param name="id">Número inteiro para fazer a busca do Pedido através do ID</param>
+    /// <returns>Retorna o Pedido se existir.</returns>
+    /// <response code="200">Pedido localizado com sucesso.</response>
+    /// <response code="404">Pedido não encontrado no database.</response>
+    /// <response code="500">Erro interno do servidor.</response>
     [HttpGet("{id}", Name = "GetPedidoById")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public ActionResult<ReadPedidoDto> GetPedidoById(int id) {
         var pedido = _repository.GetPedidoById(id);
         if(pedido!=null) {
@@ -39,7 +60,18 @@ public class PedidoController : ControllerBase {
         return NotFound();
     }
 
+    /// <summary>
+    /// Cria assincronamente um novo pedido, envia para um mensageiro(rabbitmq) para que envie para o projeto Estoque.
+    /// </summary>
+    /// <param name="createPedidoDto">Objeto contendo os itens do pedido.</param>
+    /// <returns>Retorna o pedido criado ou um erro caso não seja possível processá-lo.</returns>
+    /// <response code="201">Pedido criado com sucesso.</response>
+    /// <response code="400">Erro na requisição, como produto não encontrado ou quantidade maior que o estoque.</response>
+    /// <response code="500">Erro interno do servidor.</response>
     [HttpPost]
+    [ProducesResponseType(typeof(ReadPedidoDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<ReadPedidoDto>> CreatePedido(CreatePedidoDto createPedidoDto) {
         bool pedidoCancelado = false;
 
